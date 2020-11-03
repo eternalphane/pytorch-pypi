@@ -11,6 +11,7 @@
     "poetry"
   ],
   "type": "module",
+  "main": "src/main.js",
   "scripts": {
     "test-server": "node script/test-server.js"
   },
