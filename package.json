@@ -1,0 +1,25 @@
+{
+  "name": "pytorch-pypi",
+  "version": "1.0.0",
+  "description": "simple repository for pytorch",
+  "author": "eternalphane <eternalphane@gmail.com>",
+  "license": "ISC",
+  "keywords": [
+    "pytorch",
+    "pypi",
+    "pipenv",
+    "poetry"
+  ],
+  "type": "module",
+  "scripts": {
+    "test-server": "node script/test-server.js"
+  },
+  "dependencies": {
+    "@octokit/rest": "^18.0.8",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.7",
+    "dotenv": "^8.2.0"
+  }
+}
