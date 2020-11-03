@@ -1,13 +1,12 @@
 import { createHash } from 'crypto';
-import { Octokit } from '@octokit/rest';
+import rest from '@octokit/rest';
 import { parsePkgs, makePages } from './util.js';
-
 
 export const main = async () => {
     const pkgs = await parsePkgs();
     const message = createHash('sha256').update(JSON.stringify(pkgs)).digest('hex');
     const pages = makePages(pkgs);
-    const octokit = new Octokit({
+    const octokit = new rest.Octokit({
         auth: process.env.AUTH,
         userAgent: 'pytorch-pypi v1.0.0'
     });
@@ -19,7 +18,7 @@ export const main = async () => {
         owner, repo, commit_sha
     })).data;
     if (message === msg) {
-        return;
+        return console.log('Nothing changed');
     }
     const tree = (await octokit.git.createTree({
         // @ts-ignore

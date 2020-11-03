@@ -1,4 +1,4 @@
-import http from 'http'
+import http from 'http';
 import { parsePkgs, makePages } from '../src/util.js';
 
 const host = '127.0.0.1';
