@@ -1,3 +1,1 @@
-import { main } from '../src/main.js';
-
-main();
+require('../src/main.js').main();

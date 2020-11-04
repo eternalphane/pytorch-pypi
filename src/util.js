@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch').default;
 
 const baseUrl = 'https://download.pytorch.org/whl';
 const dists = ['torch', 'torchaudio', 'torchvision'];
@@ -7,7 +7,7 @@ const re_link = /<a href="(?<href>.+?)">(?<text>.+?)<\/a>/;
 const re_dist = new RegExp(String.raw`\b(?:${dists.join('|')})(?=-)`);
 const ver = String.raw`(?:\d+!)?\d+(?:\.\d+)*(?:(?:a|b|rc)\d+)?(?:\.post\d+)?(?:\.pre\d+)?`;
 
-export const parsePkgs = async () => (await (await fetch(`${baseUrl}/torch_stable.html`)).text())
+exports.parsePkgs = async () => (await (await fetch(`${baseUrl}/torch_stable.html`)).text())
     .match(re_anchor).reduce((pkgs, anchor) => {
         const { href, text } = anchor.match(re_link).groups;
         const [name, tag] = decodeURIComponent(text.indexOf('_cuda80') + 1 ?
@@ -27,7 +27,7 @@ export const parsePkgs = async () => (await (await fetch(`${baseUrl}/torch_stabl
  * @param {{name: string, pkgs: [string, string][]}[]} pkgs
  * @returns {[string, string][]}
  */
-export const makePages = pkgs => {
+exports.makePages = pkgs => {
     const time = new Date().toISOString().slice(0, 16).replace('T', ' ');
     return pkgs.reduce((pages, { name, pkgs }) => {
         return pages.push([`${name}/`, `<html>

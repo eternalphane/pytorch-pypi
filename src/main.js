@@ -1,12 +1,12 @@
-import { createHash } from 'crypto';
-import rest from '@octokit/rest';
-import { parsePkgs, makePages } from './util.js';
+const { createHash } = require('crypto');
+const { Octokit } = require('@octokit/rest')
+const { parsePkgs, makePages } = require('./util.js');
 
-export const main = async () => {
+exports.main = async () => {
     const pkgs = await parsePkgs();
     const message = createHash('sha256').update(JSON.stringify(pkgs)).digest('hex');
     const pages = makePages(pkgs);
-    const octokit = new rest.Octokit({
+    const octokit = new Octokit({
         auth: process.env.AUTH,
         userAgent: 'pytorch-pypi v1.0.0'
     });

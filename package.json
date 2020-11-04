@@ -10,10 +10,10 @@
     "pipenv",
     "poetry"
   ],
-  "type": "module",
   "main": "src/main.js",
   "scripts": {
-    "test-server": "node script/test-server.js"
+    "test-server": "node script/test-server.js",
+    "test-commit": "node script/test-commit.js"
   },
   "dependencies": {
     "@octokit/rest": "^18.0.8",
